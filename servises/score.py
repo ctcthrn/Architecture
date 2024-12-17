@@ -9,7 +9,7 @@ def score():
 
     if not data or "login" not in data:
         return jsonify({"error": "Invalid request"}), 400
-    # Рандомный скоринг от 0 до 1
+    # Р Р°РЅРґРѕРјРЅС‹Р№ СЃРєРѕСЂРёРЅРі РѕС‚ 0 РґРѕ 1
     score_value = random.random()
     return jsonify({"score": score_value})
 
