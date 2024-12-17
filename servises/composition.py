@@ -16,20 +16,20 @@ def composition():
     password = data["password"]
 
     try:
-        # Запрос к score
+        # Р—Р°РїСЂРѕСЃ Рє score
         score_resp = requests.get(f"{SCORE_SERVICE_URL}/score?login={login}")
-        score_resp.raise_for_status()  # Проверка на ошибки
+        score_resp.raise_for_status()  # РџСЂРѕРІРµСЂРєР° РЅР° РѕС€РёР±РєРё
 
         score_data = score_resp.json()
-        user_score = score_data.get("score", 0.0)  # Устанавливаем значение по умолчанию 0.0
+        user_score = score_data.get("score", 0.0)  # РЈСЃС‚Р°РЅР°РІР»РёРІР°РµРј Р·РЅР°С‡РµРЅРёРµ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ 0.0
 
-        # Проверка порога
+        # РџСЂРѕРІРµСЂРєР° РїРѕСЂРѕРіР°
         if user_score < SCORE_THRESHOLD:
-            return jsonify({"allowed": False, "message": "Score too low."}), 200  # Возвращаем 200 в случае успеха
+            return jsonify({"allowed": False, "message": "Score too low."}), 200  # Р’РѕР·РІСЂР°С‰Р°РµРј 200 РІ СЃР»СѓС‡Р°Рµ СѓСЃРїРµС…Р°
 
-        # Запрос к auth
+        # Р—Р°РїСЂРѕСЃ Рє auth
         auth_resp = requests.post(f"{AUTH_SERVICE_URL}/auth", json={"login": login, "password": password})
-        auth_resp.raise_for_status()  # Проверка на ошибки
+        auth_resp.raise_for_status()  # РџСЂРѕРІРµСЂРєР° РЅР° РѕС€РёР±РєРё
 
         auth_data = auth_resp.json()
         allowed = auth_data.get("allowed", False)
@@ -37,7 +37,7 @@ def composition():
         return jsonify({"allowed": allowed, "message": "Authentication successful" if allowed else "Incorrect password."}), 200 if allowed else 401
 
     except requests.exceptions.RequestException as e:
-        return jsonify({"allowed": False, "message": f"Error during request: {e}"}), 500  # Возвращаем 500 при ошибке
+        return jsonify({"allowed": False, "message": f"Error during request: {e}"}), 500  # Р’РѕР·РІСЂР°С‰Р°РµРј 500 РїСЂРё РѕС€РёР±РєРµ
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=6006, debug=True)
