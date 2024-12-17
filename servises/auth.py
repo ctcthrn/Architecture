@@ -2,7 +2,7 @@ from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
-# База пользователей (логин: пароль)
+# Р‘Р°Р·Р° РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№ (Р»РѕРіРёРЅ: РїР°СЂРѕР»СЊ)
 users = {
     "user1": "qwerty",
     "user2": "12345",
