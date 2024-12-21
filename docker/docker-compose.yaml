@@ -32,7 +32,7 @@ services:
     environment:
       - SCORE_THRESHOLD=0.5
     ports:
-      - "50051:50051"
+      - "16006:16006"
     networks:
       - app-network
 
@@ -47,7 +47,7 @@ services:
     environment:
       - SCORE_THRESHOLD=0.5
     ports:
-      - "50051:50052"
+      - "16006:16006"
     networks:
       - app-network
 

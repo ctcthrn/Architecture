@@ -8,5 +8,5 @@ COPY ../grpc/services_pb2_grpc.py /app/services_pb2_grpc.py
 
 RUN pip install grpcio grpcio-tools python-dotenv
 
-EXPOSE 50051
+EXPOSE 16006
 CMD ["python", "composition_grpc.py"]
