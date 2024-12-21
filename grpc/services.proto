@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+service Score {
+  rpc GetScore (ScoreRequest) returns (ScoreResponse);
+}
+
+service Auth {
+  rpc ValidateCredentials (AuthRequest) returns (AuthResponse);
+}
+
+message ScoreRequest {
+  string login = 1;
+}
+
+message ScoreResponse {
+  double score = 1;
+}
+
+message AuthRequest {
+  string login = 1;
+  string password = 2;
+}
+
+message AuthResponse {
+  bool allowed = 1;
+}
