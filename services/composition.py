@@ -34,7 +34,7 @@ def composition():
             # если что-то не так, считаем скор хорошим
             user_score = 1.0
     except requests.RequestException:
-        # Если ошибка при запросе к score, считаем скор хорошим
+        # если ошибка при запросе к score, считаем скор хорошим
         user_score = 1.0
 
     # проверяем порог
