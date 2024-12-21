@@ -1,0 +1,68 @@
+version: '3'
+
+services:
+  auth:
+    build:
+      context: ../
+      dockerfile: docker/auth/Dockerfile
+    container_name: auth
+    ports:
+      - "17007:17007"
+    networks:
+      - app-network
+
+  score:
+    build:
+      context: ../
+      dockerfile: docker/score/Dockerfile
+    container_name: score
+    ports:
+      - "18008:18008"
+    networks:
+      - app-network
+
+  composition1:
+    build:
+      context: ../
+      dockerfile: docker/composition/Dockerfile
+    container_name: composition1
+    depends_on:
+      - score
+      - auth
+    environment:
+      - SCORE_THRESHOLD=0.5
+    ports:
+      - "50051:50051"
+    networks:
+      - app-network
+
+  composition2:
+    build:
+      context: ../
+      dockerfile: docker/composition/Dockerfile
+    container_name: composition2
+    depends_on:
+      - score
+      - auth
+    environment:
+      - SCORE_THRESHOLD=0.5
+    ports:
+      - "50052:50051"
+    networks:
+      - app-network
+
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
+    depends_on:
+      - composition1
+      - composition2
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
