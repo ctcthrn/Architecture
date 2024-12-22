@@ -39,7 +39,7 @@ def composition():
         score_response = score_stub.GetScore(ScoreRequest(login=login))  # запрос к сервису score
         user_score = score_response.score  # извлекаем значение score
         print(f"Score: {user_score}")
-    except grpc.PpcError as e:
+    except grpc.RpcError as e:
         user_score = 1.0
 
     # логика проверки порога
@@ -50,7 +50,7 @@ def composition():
     try:
         auth_response = auth_stub.ValidateCredentials(AuthRequest(login=login, password=password))  # запрос к сервису auth
         allowed = auth_response.allowed  # извлекаем результат проверки
-    except grpc.PpcError as e:
+    except grpc.RpcError as e:
         allowed = False
 
     return {"allowed": allowed}  # возвращаем результат
