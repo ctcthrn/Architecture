@@ -17,7 +17,7 @@ except ValueError:
 
 # подключаемся к gRPC-серверам
 score_channel = grpc.insecure_channel("localhost:17007")  # подключение к сервису score
-auth_channel = grpc.insecure_channel("ocalhost:18008")  # подключение к сервису auth
+auth_channel = grpc.insecure_channel("localhost:18008")  # подключение к сервису auth
 
 score_stub = ScoreStub(score_channel)  # создаем stub для общения с сервисом score
 auth_stub = AuthStub(auth_channel)  # создаем stub для общения с сервисом auth
