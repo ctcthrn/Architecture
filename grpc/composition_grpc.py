@@ -15,9 +15,12 @@ try:
 except ValueError:
     SCORE_THRESHOLD = 0.5  # дефолтное значение
 
+SCORE_SERVICE_HOST = os.getenv("SCORE_SERVICE_HOST", "score:18008")
+AUTH_SERVICE_HOST = os.getenv("AUTH_SERVICE_HOST", "auth:17007")
+
 # подключаемся к gRPC-серверам
-score_channel = grpc.insecure_channel("localhost:17007")  # подключение к сервису score
-auth_channel = grpc.insecure_channel("localhost:18008")  # подключение к сервису auth
+score_channel = grpc.insecure_channel(SCORE_SERVICE_HOST)  # подключение к сервису score
+auth_channel = grpc.insecure_channel(AUTH_SERVICE_HOST)  # подключение к сервису auth
 
 score_stub = ScoreStub(score_channel)  # создаем stub для общения с сервисом score
 auth_stub = AuthStub(auth_channel)  # создаем stub для общения с сервисом auth
