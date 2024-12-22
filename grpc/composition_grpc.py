@@ -15,8 +15,8 @@ try:
 except ValueError:
     SCORE_THRESHOLD = 0.5  # дефолтное значение
 
-SCORE_SERVICE_HOST = os.getenv("SCORE_SERVICE_HOST", "score:18008")
-AUTH_SERVICE_HOST = os.getenv("AUTH_SERVICE_HOST", "auth:17007")
+SCORE_SERVICE_HOST = os.getenv("SCORE_SERVICE_HOST", "score:17007")
+AUTH_SERVICE_HOST = os.getenv("AUTH_SERVICE_HOST", "auth:18008")
 
 # подключаемся к gRPC-серверам
 score_channel = grpc.insecure_channel(SCORE_SERVICE_HOST)  # подключение к сервису score

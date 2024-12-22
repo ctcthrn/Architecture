@@ -8,5 +8,5 @@ COPY ../grpc/services_pb2_grpc.py /app/services_pb2_grpc.py
 
 RUN pip install grpcio grpcio-tools python-dotenv
 
-EXPOSE 17007
+EXPOSE 18008
 CMD ["python", "auth_grpc.py"]

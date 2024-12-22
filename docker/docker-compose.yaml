@@ -7,7 +7,7 @@ services:
       dockerfile: docker/auth/Dockerfile
     container_name: auth
     ports:
-      - "17007:17007"
+      - "18008:18008"
     networks:
       - app-network
 
@@ -17,7 +17,7 @@ services:
       dockerfile: docker/score/Dockerfile
     container_name: score
     ports:
-      - "18008:18008"
+      - "17007:17007"
     networks:
       - app-network
 
@@ -31,8 +31,8 @@ services:
       - auth
     environment:
       - SCORE_THRESHOLD=0.5
-      - SCORE_SERVICE_HOST=score:18008
-      - AUTH_SERVICE_HOST=auth:17007
+      - SCORE_SERVICE_HOST=score:17007
+      - AUTH_SERVICE_HOST=auth:18008
     networks:
       - app-network
 
@@ -46,8 +46,8 @@ services:
       - auth
     environment:
       - SCORE_THRESHOLD=0.5
-      - SCORE_SERVICE_HOST=score:18008
-      - AUTH_SERVICE_HOST=auth:17007
+      - SCORE_SERVICE_HOST=score:17007
+      - AUTH_SERVICE_HOST=auth:18008
     networks:
       - app-network
 
