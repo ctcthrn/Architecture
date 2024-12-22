@@ -31,8 +31,8 @@ services:
       - auth
     environment:
       - SCORE_THRESHOLD=0.5
-    ports:
-      - "16006:16006"
+      - SCORE_SERVICE_HOST=score:18008
+      - AUTH_SERVICE_HOST=auth:17007
     networks:
       - app-network
 
@@ -46,8 +46,8 @@ services:
       - auth
     environment:
       - SCORE_THRESHOLD=0.5
-    ports:
-      - "16006:16006"
+      - SCORE_SERVICE_HOST=score:18008
+      - AUTH_SERVICE_HOST=auth:17007
     networks:
       - app-network
 
